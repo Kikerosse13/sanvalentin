@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Te quiero ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Segoe UI', sans-serif;
+
+    /* Fondo romántico oscuro con profundidad */
+    background:
+      radial-gradient(circle at top, #5a0000, #120000 70%),
+      linear-gradient(180deg,#200000,#000000);
+}
+
+/* CORAZONES FLOTANDO */
+.heart{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#ff4d6d;
+    transform: rotate(45deg);
+    animation: float 8s linear infinite;
+    opacity:.8;
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#ff4d6d;
+    border-radius:50%;
+}
+
+.heart::before{ top:-9px; }
+.heart::after{ left:-9px; }
+
+@keyframes float{
+    from{
+        transform: translateY(100vh) rotate(45deg);
+        opacity:0;
+    }
+    20%{opacity:.9;}
+    to{
+        transform: translateY(-10vh) rotate(45deg);
+        opacity:0;
+    }
+}
+
+/* FLORES SUBIENDO */
+.flor{
+    position:absolute;
+    bottom:-60px;
+    font-size:42px;
+    animation: subir 4s linear forwards;
+}
+
+@keyframes subir{
+    from{
+        transform: translateY(0);
+        opacity:0;
+    }
+    30%{opacity:1;}
+    to{
+        transform: translateY(-110vh);
+        opacity:0;
+    }
+}
+
+/* CONTENIDO CENTRAL */
+.card{
+    text-align:center;
+    color:white;
+    z-index:10;
+    opacity:0;
+    animation: aparecer 2s ease forwards;
+    animation-delay:3s;
+}
+
+/* IMAGEN DEL GATITO */
+.card img{
+    width:230px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    animation: flotar 3s ease-in-out infinite alternate;
+}
+
+/* TEXTO */
+h1{
+    font-size:60px;
+    margin-top:15px;
+    animation: latido 1.2s infinite;
+}
+
+/* ANIMACIONES */
+@keyframes aparecer{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes latido{
+    0%,100%{ transform:scale(1);}
+    50%{ transform:scale(1.12);}
+}
+
+@keyframes flotar{
+    from{ transform:translateY(0);}
+    to{ transform:translateY(-10px);}
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* Corazones flotando */
+for(let i=0;i<30;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*4+4)+"s";
+    document.body.appendChild(heart);
+}
+
+/* Flores animadas */
+const flores = ["🌹","🌷","🌸","🌺","💐"];
+
+setInterval(()=>{
+    let flor=document.createElement("div");
+    flor.className="flor";
+    flor.innerHTML=flores[Math.floor(Math.random()*flores.length)];
+    flor.style.left=Math.random()*100+"vw";
+    document.body.appendChild(flor);
+
+    setTimeout(()=> flor.remove(), 4000);
+}, 600);
+</script>
+
+<div class="card">
+    <img src="gatito.png" alt="gatito romántico">
+    <h1>Te quiero ❤️</h1>
+</div>
+
+</body>
+</html>
